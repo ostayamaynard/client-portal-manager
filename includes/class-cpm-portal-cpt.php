@@ -159,13 +159,13 @@ class CPM_Portal_CPT {
             update_post_meta( $post_id, '_portal_users', $user_ids );
             
             error_log( sprintf(
-                '💾 Saved portal %d user assignments: [%s]',
+                'Saved portal %d user assignments: [%s]',
                 $post_id,
                 implode( ',', $user_ids )
             ));
         } else {
             delete_post_meta( $post_id, '_portal_users' );
-            error_log( "💾 Cleared user assignments for portal {$post_id}" );
+            error_log( " Cleared user assignments for portal {$post_id}" );
         }
     }
 }

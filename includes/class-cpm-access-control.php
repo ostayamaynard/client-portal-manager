@@ -74,12 +74,12 @@ class CPM_Access_Control {
             
             if ( $has_home_in_menu ) {
                 // Portal user has home link in menu - allow
-                error_log( "✅ Portal user {$user_id} accessing home (in menu)" );
+                error_log( "Portal user {$user_id} accessing home (in menu)" );
                 return;
             }
             
             // Portal user doesn't have home in menu - block
-            error_log( "🚫 Portal user {$user_id} blocked from home (not in menu)" );
+            error_log( "Portal user {$user_id} blocked from home (not in menu)" );
             $this->show_404();
         }
     }
@@ -95,17 +95,17 @@ class CPM_Access_Control {
         $allowed_users = $this->get_portal_users( $portal_id );
 
         if ( ! $user_id ) {
-            error_log( "🔒 Guest attempted portal ID {$portal_id}" );
+            error_log( "Guest attempted portal ID {$portal_id}" );
             wp_safe_redirect( wp_login_url( get_permalink( $portal_id ) ) );
             exit;
         }
 
         if ( ! empty( $allowed_users ) && ! in_array( $user_id, $allowed_users, true ) ) {
-            error_log( "🚫 User {$user_id} denied access to portal {$portal_id}" );
+            error_log( "User {$user_id} denied access to portal {$portal_id}" );
             $this->show_404();
         }
 
-        error_log( "✅ User {$user_id} accessing portal {$portal_id}" );
+        error_log( "User {$user_id} accessing portal {$portal_id}" );
     }
 
     /**
@@ -131,28 +131,28 @@ class CPM_Access_Control {
         if ( $page_in_portal_menu ) {
             // Page is in a portal menu
             if ( ! $user_id ) {
-                error_log( "🔒 Guest attempted portal page {$page_id}" );
+                error_log( "Guest attempted portal page {$page_id}" );
                 wp_safe_redirect( wp_login_url( get_permalink( $page_id ) ) );
                 exit;
             }
 
             // Check if user can access this page via their portal menus
             if ( ! $this->user_can_access_page_via_menu( $user_id, $page_id ) ) {
-                error_log( "🚫 User {$user_id} denied access to portal page {$page_id}" );
+                error_log( "User {$user_id} denied access to portal page {$page_id}" );
                 $this->show_404();
             }
 
-            error_log( "✅ User {$user_id} accessing portal page {$page_id}" );
+            error_log( "User {$user_id} accessing portal page {$page_id}" );
         } else {
             // Page is NOT in any portal menu - it's public
             
             if ( $is_portal_user ) {
                 // Portal users can ONLY access portal content
-                error_log( "🚫 Portal user {$user_id} blocked from public page {$page_id}" );
+                error_log( "Portal user {$user_id} blocked from public page {$page_id}" );
                 $this->show_404();
             }
             
-            error_log( "✅ Non-portal user accessing public page {$page_id}" );
+            error_log( "Non-portal user accessing public page {$page_id}" );
         }
     }
 
@@ -219,7 +219,7 @@ class CPM_Access_Control {
         $user_portals = $this->get_user_portals( $user_id );
 
         if ( ! empty( $user_portals ) ) {
-            error_log( "🚫 Portal user {$user_id} blocked from blog content" );
+            error_log( "Portal user {$user_id} blocked from blog content" );
             $this->show_404();
         }
     }

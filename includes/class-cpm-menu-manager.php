@@ -88,10 +88,10 @@ class CPM_Menu_Manager {
 
         if ( isset( $_POST['cpm_portal_menu_id'] ) && ! empty( $_POST['cpm_portal_menu_id'] ) ) {
             update_post_meta( $post_id, '_portal_menu_id', intval( $_POST['cpm_portal_menu_id'] ) );
-            error_log( "💾 Saved menu for portal {$post_id}: " . intval( $_POST['cpm_portal_menu_id'] ) );
+            error_log( "Saved menu for portal {$post_id}: " . intval( $_POST['cpm_portal_menu_id'] ) );
         } else {
             delete_post_meta( $post_id, '_portal_menu_id' );
-            error_log( "💾 Removed menu from portal {$post_id}" );
+            error_log( "Removed menu from portal {$post_id}" );
         }
     }
 
@@ -143,7 +143,7 @@ class CPM_Menu_Manager {
         $args['fallback_cb'] = '__return_empty_string';
         $args['items_wrap'] = '<ul style="display:none;">%3$s</ul>';
         
-        error_log( "🚫 Hiding menu - portal has no menu assigned" );
+        error_log( "Hiding menu - portal has no menu assigned" );
         
         return $args;
     }

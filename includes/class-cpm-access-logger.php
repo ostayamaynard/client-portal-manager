@@ -9,7 +9,7 @@ class CPM_Access_Logger {
     }
 
     /**
-     * ✅ Register custom post type for logs
+     * Register custom post type for logs
      */
     public function register_log_cpt() {
         register_post_type( 'cpm_access_log', [
@@ -26,7 +26,7 @@ class CPM_Access_Logger {
     }
 
     /**
-     * ✅ Log access attempts
+     * Log access attempts
      */
     public function log_access_event() {
         if ( ! is_singular( 'portal' ) ) return;
@@ -45,19 +45,19 @@ class CPM_Access_Logger {
             $status = 'denied';
             $note = 'Access denied (user not authorized).';
 
-            // ✅ Log denied attempt before redirect
+            // Log denied attempt before redirect
             $this->create_log_entry( $user, $post, $status, $note );
 
             wp_safe_redirect( $redirect_url );
             exit;
         }
 
-        // ✅ Log granted access
+        // Log granted access
         $this->create_log_entry( $user, $post, $status, $note );
     }
 
     /**
-     * ✅ Create log post entry
+     * Create log post entry
      */
     private function create_log_entry( $user, $portal, $status, $note ) {
         $title = sprintf(

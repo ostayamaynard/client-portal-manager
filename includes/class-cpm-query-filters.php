@@ -23,7 +23,7 @@ class CPM_Query_Filters {
 	public function adjust_queries( $q ) {
 		if ( is_admin() || ! $q->is_main_query() ) return;
 
-		// 🔒 Absolutely never touch a singular portal page
+		// Absolutely never touch a singular portal page
 		if ( $q->is_singular( 'portal' ) ) {
 			// Ensure WP is actually querying the portal CPT
 			$q->set( 'post_type', 'portal' );
@@ -48,7 +48,7 @@ class CPM_Query_Filters {
 		}
 
 		/**
-		 * 🚫 Hide restricted pages from users who aren't allowed,
+		 * Hide restricted pages from users who aren't allowed,
 		 * but (IMPORTANT) do not alter singular requests here.
 		 * Page access decisions for singulars are handled in CPM_Page_Access::restrict_page_access().
 		 */

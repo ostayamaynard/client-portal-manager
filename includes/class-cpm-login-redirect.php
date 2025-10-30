@@ -26,7 +26,7 @@ class CPM_Login_Redirect {
 
         // Admins go to dashboard
         if ( current_user_can( 'manage_options', $user_id ) ) {
-            error_log( "✅ Admin {$user_id} → dashboard" );
+            error_log( "Admin {$user_id} → dashboard" );
             return admin_url();
         }
 
@@ -45,14 +45,14 @@ class CPM_Login_Redirect {
 
         // No portals - redirect to home
         if ( empty( $portals ) ) {
-            error_log( "⚠️ User {$user_id} has no portals → home" );
+            error_log( "User {$user_id} has no portals → home" );
             return home_url( '/' );
         }
 
         // Single portal - redirect directly to the PORTAL POST
         if ( count( $portals ) === 1 ) {
             $portal_url = get_permalink( $portals[0] );
-            error_log( "✅ User {$user_id} → single portal {$portals[0]} at {$portal_url}" );
+            error_log( "User {$user_id} → single portal {$portals[0]} at {$portal_url}" );
             
             // Store active portal
             set_transient( 'cpm_active_portal_' . $user_id, $portals[0], HOUR_IN_SECONDS );
@@ -61,7 +61,7 @@ class CPM_Login_Redirect {
         }
 
         // Multiple portals - show selection page
-        error_log( "🔀 User {$user_id} → portal selection (" . count( $portals ) . " portals)" );
+        error_log( "User {$user_id} → portal selection (" . count( $portals ) . " portals)" );
         
         // Store in transient
         set_transient( 'cpm_user_portals_' . $user_id, $portals, HOUR_IN_SECONDS );
@@ -121,7 +121,7 @@ class CPM_Login_Redirect {
         delete_transient( 'cpm_user_portals_' . $user_id );
 
         // Redirect to selected portal POST (not page)
-        error_log( "✅ User {$user_id} selected portal {$portal_id}" );
+        error_log( "User {$user_id} selected portal {$portal_id}" );
         wp_safe_redirect( get_permalink( $portal_id ) );
         exit;
     }

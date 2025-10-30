@@ -10,7 +10,7 @@ class CPM_Access_Log_Admin {
         add_action( 'pre_get_posts', [ $this, 'sort_logs_by_meta' ] );
     }
 
-    /** ✅ Define admin columns */
+    /** Define admin columns */
     public function set_custom_columns( $columns ) {
         return [
             'cb'            => '<input type="checkbox" />',
@@ -22,7 +22,7 @@ class CPM_Access_Log_Admin {
         ];
     }
 
-    /** ✅ Fill column content */
+    /** Fill column content */
     public function render_custom_columns( $column, $post_id ) {
         switch ( $column ) {
             case 'user':
@@ -50,14 +50,14 @@ class CPM_Access_Log_Admin {
         }
     }
 
-    /** ✅ Make columns sortable */
+    /** Make columns sortable */
     public function make_columns_sortable( $columns ) {
         $columns['status']    = 'status';
         $columns['timestamp'] = 'timestamp';
         return $columns;
     }
 
-    /** ✅ Handle sorting logic */
+    /** Handle sorting logic */
     public function sort_logs_by_meta( $query ) {
         if ( ! is_admin() || ! $query->is_main_query() || $query->get('post_type') !== 'cpm_access_log' ) return;
 

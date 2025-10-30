@@ -59,7 +59,7 @@ class CPM_Portal_Switcher {
                 <?php wp_nonce_field( 'cpm_switch_portal', 'cpm_switch_nonce' ); ?>
                 
                 <label style="display:block;font-weight:600;margin-bottom:8px;color:#1d2733;font-size:13px;">
-                    🔄 <?php _e( 'Switch Portal', 'client-portal-manager' ); ?>
+                     <?php _e( 'Switch Portal', 'client-portal-manager' ); ?>
                 </label>
                 
                 <select 
@@ -195,7 +195,7 @@ class CPM_Portal_Switcher {
         // Store in transient (1 hour)
         set_transient( 'cpm_active_portal_' . $user_id, $portal_id, HOUR_IN_SECONDS );
         
-        error_log( "🔄 User {$user_id} switched to portal {$portal_id}" );
+        error_log( "User {$user_id} switched to portal {$portal_id}" );
 
         // Redirect to the new portal
         wp_safe_redirect( get_permalink( $portal_id ) );
