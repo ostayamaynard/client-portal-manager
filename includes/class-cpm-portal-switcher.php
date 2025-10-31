@@ -58,8 +58,9 @@ class CPM_Portal_Switcher {
                 Switch Portal
             </div>
             
-            <form method="post" style="margin: 0;">
+            <form method="post" action="<?php echo esc_url( home_url( '/' ) ); ?>" style="margin: 0;">
                 <?php wp_nonce_field( 'cpm_switch_portal', 'cpm_switch_nonce' ); ?>
+                <input type="hidden" name="cpm_switch_portal" value="1">
                 
                 <select 
                     name="cpm_portal_id" 
